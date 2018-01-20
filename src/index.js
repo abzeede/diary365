@@ -5,9 +5,9 @@ import './index.css';
 import App from './App';
 import registerServiceWorker from './registerServiceWorker';
 
-const MainApp = (props) => (
+const MainApp = () => (
   <BrowserRouter>
-    <App {...props} />
+    <App />
   </BrowserRouter>
 )
 
