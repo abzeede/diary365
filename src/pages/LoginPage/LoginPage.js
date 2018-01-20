@@ -1,15 +1,20 @@
 import React from 'react'
-import { Button, Input } from 'material-ui'
+import styled from 'styled-components'
+import LoginBox from 'components/LoginBox'
+
+const LoginPageContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  background: black;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+`
 
 const LoginPage = () => (
-  <div>
-    <h1>DIARY365</h1>
-    <h3>HOW ARE YOU?</h3>
-    <p>I'M <Input name="username" /></p>
-    <h3>WHAT'S YOUR PASSWORD</h3>
-    <p><Input name="password" /></p>
-    <Button>LET ME IN</Button>
-  </div>
+  <LoginPageContainer>
+    <LoginBox />
+  </LoginPageContainer>
 )
 
 export default LoginPage

@@ -1,5 +1,6 @@
 import React from 'react';
 import { Route, Redirect } from 'react-router-dom'
+import 'normalize.css'
 import withAuth from './hocs/withAuth'
 import LoginPage from './pages/LoginPage'
 import HomePage from './pages/HomePage'

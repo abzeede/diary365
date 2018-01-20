@@ -5,11 +5,14 @@
   "dependencies": {
     "formsy-react": "1.1.2",
     "material-ui": "next",
+    "normalize.css": "^7.0.0",
     "react": "16.2.0",
     "react-dom": "16.2.0",
     "react-router": "4.2.0",
     "react-router-dom": "4.2.2",
-    "recompose": "0.26.0"
+    "recompose": "0.26.0",
+    "styled-components": "^2.4.0",
+    "prop-types": "latest"
   },
   "devDependencies": {
     "react-scripts": "1.1.0"
