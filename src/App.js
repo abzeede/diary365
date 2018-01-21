@@ -9,6 +9,7 @@ import reduxStore from 'store'
 import withAuth from 'hocs/withAuth'
 import LoginPage from 'pages/LoginPage'
 import HomePage from 'pages/HomePage'
+// import {onLogin} from 'store/auth'
 
 const PrivateRoute = withAuth(({ component: Component, isAuth, authStatus, ...rest }) => (
   <Route {...rest} render={props => (
@@ -27,6 +28,8 @@ const store = createStore(
   reduxStore,
   composeWithDevTools(applyMiddleware(thunk))
 )
+
+// store.dispatch(onLogin({ username: 'bank', password: 'password' }))
 
 const App = () => (
   <Provider store={store}>

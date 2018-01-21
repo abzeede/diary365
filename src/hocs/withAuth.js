@@ -8,9 +8,15 @@ import { authStatus, isAuth } from 'selectors/auth'
 
 export default (WrappedComponent) => {
   class AuthComponent extends React.Component {
+    componentDidMount() {
+      this.checkAuthStatusAndRedirect(this.props)
+    }
     componentWillReceiveProps(nextProps) {
-      if (nextProps.isAuth && nextProps.location.pathname === '/login') {
-        this.props.history.push(this.props.location.state.from.pathname || '/')
+      this.checkAuthStatusAndRedirect(nextProps)
+    }
+    checkAuthStatusAndRedirect = ({ isAuth, location, history }) => {
+      if (isAuth && location.pathname === '/login') {
+        history.replace(location.state.from.pathname || '/')
       }
     }
     render () {
