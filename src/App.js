@@ -1,9 +1,14 @@
 import React from 'react';
-import { Route, Redirect } from 'react-router-dom'
+import { Route, Redirect, BrowserRouter, Switch } from 'react-router-dom'
+import { Provider } from 'react-redux'
+import { createStore, applyMiddleware } from 'redux'
+import thunk from 'redux-thunk'
+import { composeWithDevTools } from 'redux-devtools-extension'
 import 'normalize.css'
-import withAuth from './hocs/withAuth'
-import LoginPage from './pages/LoginPage'
-import HomePage from './pages/HomePage'
+import reduxStore from 'store'
+import withAuth from 'hocs/withAuth'
+import LoginPage from 'pages/LoginPage'
+import HomePage from 'pages/HomePage'
 
 const PrivateRoute = withAuth(({ component: Component, isAuth, authStatus, ...rest }) => (
   <Route {...rest} render={props => (
@@ -18,11 +23,22 @@ const PrivateRoute = withAuth(({ component: Component, isAuth, authStatus, ...re
   )}/>
 ))
 
+const store = createStore(
+  reduxStore,
+  composeWithDevTools(applyMiddleware(thunk))
+)
+
 const App = () => (
-  <div className="app">
-    <Route path="/login" component={LoginPage} />
-    <PrivateRoute exact path="/" component={HomePage} />
-  </div>
+  <Provider store={store}>
+    <BrowserRouter>
+      <div className="app">
+        <Switch>
+          <Route path="/login" component={LoginPage} />
+          <PrivateRoute exact path="/" component={HomePage} />
+        </Switch>
+      </div>
+    </BrowserRouter>
+  </Provider>
 )
 
 export default App

@@ -21,7 +21,7 @@ const Container = styled.div`
   }
 `
 
-const LoginBox = ({ isAuth, authStatus, onLogin }) => {
+const LoginBox = ({ authStatus, onLogin }) => {
   return (
     <Container>
       <Form onSubmit={onLogin}>
@@ -31,7 +31,7 @@ const LoginBox = ({ isAuth, authStatus, onLogin }) => {
         <h3 className="question">how can i believe you?</h3>
         <p className="answer">alright! i have the password, only you and i know and it is <FormInput name="password" type="password" />.</p>
         <div>
-          <Button className="submit-btn" type="submit">enter</Button>
+          <Button className="submit-btn" type="submit">{authStatus.isRequest ? 'checking...' : 'enter'}</Button>
         </div>
       </Form>
     </Container>

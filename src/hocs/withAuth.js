@@ -1,32 +1,31 @@
 import React from 'react'
+import { bindActionCreators } from 'redux'
+import { connect } from 'react-redux'
+import { onLogin } from 'store/auth'
+import { authStatus, isAuth } from 'selectors/auth'
 
 export default (WrappedComponent) => {
   class AuthComponent extends React.Component {
-    state = {
-      isAuth: false,
-      authStatus: null,
-    } // mock data
-
-    componentDidMount() {
-      // todo: fetch auth status
-    }
-
-    onLogin = ({ username, password }) => (
-      this.setState({ isAuth: username === 'bank' && password === 'password' })
-    ) // mock function
-
     render () {
-      const { isAuth, authStatus } = this.state
+      const { isAuth, authStatus, onLogin } = this.props
       return (
         <WrappedComponent
           isAuth={isAuth}
           authStatus={authStatus}
-          onLogin={this.onLogin}
+          onLogin={onLogin}
           {...this.props}
         />
       )
     }
   }
 
-  return AuthComponent
+  const mapStateToProps = (state) => ({
+    isAuth: isAuth(state),
+    authStatus: authStatus(state),
+  })
+  const mapDispatchToProps = (dispatch) => bindActionCreators({
+    onLogin,
+  }, dispatch)
+
+  return connect(mapStateToProps, mapDispatchToProps)(AuthComponent)
 }
