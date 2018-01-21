@@ -5,7 +5,7 @@ import LoginBox from 'components/LoginBox'
 const LoginPageContainer = styled.div`
   display: flex;
   flex-direction: column;
-  background: black;
+  background: #2c3e50;
   height: 100%;
   justify-content: center;
   align-items: center;
